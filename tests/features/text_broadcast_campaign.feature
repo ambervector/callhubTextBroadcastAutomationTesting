@@ -11,9 +11,6 @@ Feature: text broadcast campaign creation and completion
     Examples:
     |             username                   |    password           |
     |  amber.bestbusinessdeals@gmail.com     |    Sherlock@001       |
-    # |  ruchika94chawla@gmail.com             |    123#Ruchika        |
-
-
 
 
   @campaign
@@ -24,7 +21,6 @@ Feature: text broadcast campaign creation and completion
     Examples: phonebook
       | phonebook  |
       | Demo Test  |
-
 
 
   @phonebook
