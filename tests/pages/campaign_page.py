@@ -2,7 +2,7 @@
 
 
 import time
-from pages.login_page import highlight
+from step_defs.conftest import highlight
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
@@ -58,6 +58,12 @@ class Campaign:
             next_button.click()
         time.sleep(3)
 
+    def close_popup(self):
+            close_popup_script = self.driver.find_element(By.CSS_SELECTOR,"div.url-discovery-close")
+            highlight(close_popup_script)
+            close_popup_script.click()
+        
+
     def set_script(self):
         script_field = self.driver.find_element(By.ID, 'message-textarea')
         highlight(script_field)
@@ -67,14 +73,12 @@ class Campaign:
     def get_overview_text(self):
         return self.driver.find_element(By.XPATH, "//span[text()='Overview']").text
 
-    def click_start_and_refresh(self):
+    def click_start(self):
         start_button = self.driver.find_element(
             By.XPATH, '(//div/button[@class="button-style rounded-left btn-border-right"])[1]')
         highlight(start_button)
         start_button.click()
-        time.sleep(60)
-        self.driver.refresh()
-        time.sleep(5)
+        
 
     def get_total_contacts_count(self):
         total_contacts = self.driver.find_element(By.CSS_SELECTOR, 'span.undefined > sub >span')
@@ -86,7 +90,7 @@ class Campaign:
             By.XPATH, '(//div[@class="caption-label"])[1]')
         highlight(total_completed_count)
         extracted_text = total_completed_count.text
-        print(extracted_text, "This is the extracted string from Completed Count")
+        # print(extracted_text, "This is the extracted string from Completed Count")
         return extracted_text[0]
 
     def get_error_msg(self):

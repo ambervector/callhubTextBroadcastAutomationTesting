@@ -1,19 +1,7 @@
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
+from step_defs.conftest import highlight
 import time
-
-
-
-def highlight(element):
-    """Highlights (blinks) a Selenium Webdriver element"""
-    driver = element._parent
-    def apply_style(s):
-        driver.execute_script("arguments[0].setAttribute('style', arguments[1]);",
-                            element, s)
-    original_style = element.get_attribute('style')
-    apply_style("background: yellow; border: 2px solid red;")
-    time.sleep(3)
-    apply_style(original_style)
 
 
 
@@ -62,5 +50,21 @@ class LoginPage:
 
     def verify_login(self):
         return self. driver.find_element(By.XPATH, '//li[@page="guide"]').is_displayed()
+
+
+    
+
+
+
+
+# a = [15,20,11,5,2]
+# max_num = 0
+# for i in a:
+#    if  i > max_num:
+#        max_num = i
+
+# print (max_num)
+
+
 
 
